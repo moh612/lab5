@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'person_app/style.css' %}">
+</head>
+<body>
+    <h1>Add Person</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'person_list' %}">View People</a>
+</body>
+</html>
+```
+- `list.html`:
+````html
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'person_app/style.css' %}">
+</head>
+<body>
+    <h1>People List</h1>
+    <ul>
+        {% for person in people %}
+        <li>{{ person.username }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_person' %}">Add Person</a>
+</body>
+</html>
